@@ -1,0 +1,39 @@
+Package: qgctgan
+Type: Package
+Title: Quality-Aware Cluster-Conditioned Oversampling with Intra-Cluster
+        Filtering
+Version: 0.1.0
+Authors@R: person(given = "Munil",
+                  family = "Yang",
+                  role = c("aut", "cre"),
+                  email = "miyang@ips.or.kr",
+                  comment = c(ORCID = "0009-0004-1493-6691"))
+Description: A generator-agnostic framework for oversampling imbalanced tabular
+    data. The minority class is partitioned into sub-clusters with a Gaussian
+    mixture model, synthetic candidates are drawn per sub-cluster from a
+    pluggable generator, and the candidates pass a two-stage quality filter:
+    a composite quality score combining intra-cluster density fidelity, class
+    boundary separability and local-outlier behaviour with an adaptive
+    per-cluster rejection quantile ('Stage 1'), followed by a greedy maximum
+    mean discrepancy selection that aligns the retained synthetic set with the
+    real minority distribution ('Stage 2'). A pure-R Gaussian generator is
+    provided so the pipeline runs without external dependencies; an optional
+    adapter calls a conditional tabular generative adversarial network through
+    'reticulate' when higher-fidelity generation is required. Implements the
+    method of Yang (2026, Applied Soft Computing).
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 4.1.0)
+Imports:
+    stats,
+    methods,
+    mclust,
+    dbscan
+Suggests:
+    reticulate,
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+RoxygenNote: 7.3.1
